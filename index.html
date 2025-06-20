@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <!--     <meta http-equiv="origin-trial" content="ArVQFLoRW65pvwhCPkJCYYyObeF5xKrQQ4eu3cgH3NK5rPy2PEjsGHpr2pTOUaQA/m92da7YMNHLLTelHL6q2AoAAACheyJvcmlnaW4iOiJodHRwczovL3ByaXZhdGUtbmV0d29yay1hY2Nlc3MtcGVybWlzc2lvbi10ZXN0LmdsaXRjaC5tZTo0NDMiLCJmZWF0dXJlIjoiUHJpdmF0ZU5ldHdvcmtBY2Nlc3NQZXJtaXNzaW9uUHJvbXB0IiwiZXhwaXJ5IjoxNzE0NTIxNTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZX0="> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LNA testbed" />
+
+    <title>Local Network Access testing</title>
+
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon" />
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Local Network Access testing</h1>
+    </header>
+
+    <main>
+        <!-- JS fetch testing -->
+        <h2>JS fetch</h2>
+        <form id="fetch-form">
+            <label for="fetch-input-box">URL to fetch:</label>
+            <input type="url" id="fetch-input-box" name="fetch-url" value="http://localhost:8000" />
+            <label for="fetch-method">Use Service Worker:</label>
+            <input type="checkbox" id="service-worker" name="service-worker" value="use service worker" />
+            <label for="fetch-method">Request method:</label>
+            <select name="fetch-method" id="fetch-method">
+                <option value="get">GET</option>
+                <option value="put">PUT</option>
+                <option value="put">POST</option>
+            </select>
+            <label for="fetch-cors">CORS?</label>
+            <input type="checkbox" name="fetch-cors" id="fetch-cors" />
+            <label for="fetch-target-address-space">TargetAddressSpace?</label>
+            <select name="fetch-target-address-space" id="fetch-target-address-space">
+                <option value="n/a">n/a</option>
+                <option value="local">local</option>
+                <option value="private">private</option>
+                <option value="public">public</option>
+                <option value="unknown">unknown</option>
+                <option value="loopback">loopback</option>
+            </select>
+            <label for="fetch-headers">Fetch headers (JSON):</label>
+            <input type="text" name="fetch-headers" id="fetch-headers" />
+            <label for="fetch-body">Fetch body:</label>
+            <input type="text" name="fetch-body" id="fetch-body" />
+            <button>Fetch!</button>
+        </form>
+        <div id="fetch-results">
+            Fetch results:
+            <ul id="fetch-results-list"></ul>
+        </div>
+
+        <!-- Subresource loading testing -->
+        <h2>Subresource loading</h2>
+        <form id="subresource-form">
+            <label for="subresource-input-box">URL to load in frame:</label>
+            <input type="url" id="subresource-input-box" name="subresource-url" value="http://localhost:8000/local.png"
+                required />
+            <button>Load!</button>
+        </form>
+        <div id="subresource-results">
+            Subresource results:
+            <img id="subresource-img" src="public.png" />
+        </div>
+
+        <!-- Subframe loading testing -->
+        <h2>Subframe loading</h2>
+        <form id="subframe-form">
+            <label for="subframe-input-box">URL to load in frame:</label>
+            <input type="url" id="subframe-input-box" name="subframe-url" value="http://localhost:8000/test.html" />
+            <button>Navigate!</button>
+        </form>
+        <div id="subframe-results">
+            <iframe id="subframe-frame" src="/"> </iframe>
+        </div>
+
+        <!-- TODO: Fetch from inside a subframe, testing permission policy. Needs a second site. -->
+
+        <!-- WebSocket testing -->
+        <h2>WebSocket connection</h2>
+        <form id="websocket-form">
+            <label for="websocket-input-box">URL to connect to:</label>
+            <input type="url" id="websocket-input-box" name="websocket-url" value="ws://localhost:8765/" />
+            <button id="websocket-connect">Connect!</button>
+            <button id="websocket-send">
+                Send!
+            </button>
+            <button id="websocket-close">
+                Close!
+            </button>
+        </form>
+        <div id="websocket-results">
+            WebSocket results:
+            <ul id="websocket-results-list"></ul>
+        </div>
+
+        <hr />
+        <h3>Testing setup</h3>
+        <ol>
+            <li>
+                Download this
+                <a download href="local.png">image file</a>, this <a download href="test.html">html file</a>, and this
+                <a download href="ws.py">python script</a> to a local
+                directory
+            </li>
+            <li>
+                From the directory with those files, run <code>python3 -m http.server</code> for the HTTP server and run
+                <code>python3 ws.py</code> for the WebSocket server
+            </li>
+        </ol>
+    </main>
+</body>
+
+</html>
