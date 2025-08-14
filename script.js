@@ -167,3 +167,26 @@ websocketSendButton.onclick = (event) => {
 websocketCloseButton.onclick = (event) => {
     webSocket.close();
 };
+
+const permissionsApiForm = document.getElementById("permissions-api-form");
+const permissionsApiQueryButton = document.getElementById("permissions-api-query");
+const permissionsApiResultsList = document.getElementById("permissions-api-results-list");
+
+function appendPermissionsApiResult(result) {
+    const text = `${result}`;
+    const item = document.createElement("li");
+    item.appendChild(document.createTextNode(text));
+    permissionsApiResultsList.appendChild(item);
+}
+permissionsApiForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+});
+permissionsApiQueryButton.onclick = (event) => {
+    navigator.permissions.query({name: "local-network-access"})
+        .then((result) => {
+            appendPermissionsApiResult(result.state);
+        })
+        .catch((error) => {
+            appendPermissionsApiResult(`error = ${error}`);
+        });
+};
