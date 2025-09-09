@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LNA testbed" />
+
+    <title>Local Network Access testing</title>
+
+    <link id="favicon" rel="icon" href="local.png" type="image/x-icon" />
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- load a stylesheet from localhost -->
+     <link rel="stylesheet" href="http://localhost:8000/test.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Local Network Access stylesheet testing</h1>
+    </header>
+
+    <main>
+        <p>This page includes a script tag in its head that loads a script from localhost during page load.
+            If the stylesheet loads, the background of this page will be pink.</p>
+        <hr />
+        <h3>Testing setup</h3>
+        <ol>
+            <li>
+                Download this <a download href="test.css">JS file</a> to a local directory
+            </li>
+            <li>
+                From the directory with those files, run <code>python3 -m http.server</code>
+            </li>
+        </ol>
+    </main>
+</body>
+
+</html>

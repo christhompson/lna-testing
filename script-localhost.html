@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LNA testbed" />
+
+    <title>Local Network Access testing</title>
+
+    <link id="favicon" rel="icon" href="local.png" type="image/x-icon" />
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- load a script from localhost -->
+    <script src="http://localhost:8000/test.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Local Network Access &lt;script&gt; testing</h1>
+    </header>
+
+    <main>
+        <p>This page includes a script tag in its head that loads a script from localhost during page load.
+            If the script loads and runs, text will be appended to the bottom of this page.</p>
+        <hr />
+        <h3>Testing setup</h3>
+        <ol>
+            <li>
+                Download this <a download href="test.js">JS file</a> to a local directory
+            </li>
+            <li>
+                From the directory with those files, run <code>python3 -m http.server</code>
+            </li>
+        </ol>
+    </main>
+    <footer id="results">
+        <h3>Results:</h3>
+    </footer>
+</body>
+
+</html>
