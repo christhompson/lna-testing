@@ -184,7 +184,7 @@ function appendWebTransportResult(result) {
     const text = `${webTransportURL}: ${result}`;
     const item = document.createElement("li");
     item.appendChild(document.createTextNode(text));
-    webtransportResultList.appendChild(item);
+    webTransportResultList.appendChild(item);
 }
 webTransportForm.addEventListener("submit", (event) => {
     event.preventDefault();
