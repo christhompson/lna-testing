@@ -101,6 +101,24 @@
             <ul id="websocket-results-list"></ul>
         </div>
 
+        <!-- WebTransport testing -->
+        <h2>WebTransport connection</h2>
+        <form id="webtransport-form">
+            <label for="webtransport-input-box">URL to connect to:</label>
+            <input type="url" id="webtransport-input-box" name="webtransport-url" value="https://localhost:4433/counter" />
+            <button id="webtransport-connect">Connect!</button>
+            <button id="webtransport-send">
+                Send!
+            </button>
+            <button id="webtransport-close">
+                Close!
+            </button>
+        </form>
+        <div id="webtransport-results">
+            WebTransport results:
+            <ul id="webtransport-results-list"></ul>
+        </div>
+
         <!-- Permissions API testing -->
         <h2>Permissions API</h2>
         <form id="permissions-api-form">
