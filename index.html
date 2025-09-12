@@ -142,6 +142,13 @@
                 From the directory with those files, run <code>python3 -m http.server</code> for the HTTP server and run
                 <code>python3 ws.py</code> for the WebSocket server
             </li>
+            <li>
+               For testing WebTransport, download <a href="https://github.com/GoogleChrome/samples/blob/gh-pages/webtransport/webtransport_server.py">webtransport_server.py</a>
+               and follow the instructions in there to get it running.
+               Self-signed certificate is the easiest thing to do for https
+               (WebTransport does not work with http://localhost, it requires
+               https://localhost).
+            </li>
         </ol>
     </main>
 </body>
