@@ -190,7 +190,7 @@ webTransportForm.addEventListener("submit", (event) => {
     event.preventDefault();
 });
 webTransportConnectButton.onclick = (event) => {
-   if (!webtransportInputBox.validity.valid) {
+   if (!webTransportInputBox.validity.valid) {
         console.log("Input URL not valid");
         return;
     }
@@ -223,7 +223,7 @@ webTransportSendButton.onclick = async (event) => {
     appendWebTransportResult('Sent "Hello, world!", got back ' + await new Response(stream.readable).text());
 };
 
-webTransportCloseseButton.onclick = (event) => {
+webTransportCloseButton.onclick = (event) => {
     webTransport.close();
 };
 
