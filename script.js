@@ -190,7 +190,7 @@ webTransportForm.addEventListener("submit", (event) => {
     event.preventDefault();
 });
 webTransportConnectButton.onclick = (event) => {
-   Tif (!webtransportInputBox.validity.valid) {
+   if (!webtransportInputBox.validity.valid) {
         console.log("Input URL not valid");
         return;
     }
@@ -215,12 +215,12 @@ webTransportConnectButton.onclick = (event) => {
 };
 
 webTransportSendButton.onclick = async (event) => {
-    let stream = await webTransport.createUnidirectionalStream();
+    let stream = await webTransport.createBidirectionalStream();
     let encoder = new TextEncoder();
-    let writer = stream.getWriter();
+    let writer = stream.writable.getWriter();
     await writer.write(encoder.encode("Hello, world!"))
-    await writer.close();
-    appendWebTransportResult('Sent a unidirectional stream with data: ' + rawData);
+    writer.close();
+    appendWebTransportResult('Sent "Hello, world!", got back ' + await new Response(stream.readable).text());
 };
 
 webTransportCloseseButton.onclick = (event) => {
