@@ -194,7 +194,7 @@ webTransportConnectButton.onclick = (event) => {
         console.log("Input URL not valid");
         return;
     }
-    webTransportURL = webtransportInputBox.value;
+    webTransportURL = webTransportInputBox.value;
     webTransport = new WebTransport(webTransportURL);
 
     webTransport.ready
