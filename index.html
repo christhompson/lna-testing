@@ -101,12 +101,38 @@
             <ul id="websocket-results-list"></ul>
         </div>
 
+        <!-- WebTransport testing -->
+        <h2>WebTransport connection</h2>
+        <form id="webtransport-form">
+            <label for="webtransport-input-box">URL to connect to:</label>
+            <input type="url" id="webtransport-input-box" name="webtransport-url" value="https://localhost:4433/counter" />
+            <button id="webtransport-connect">Connect!</button>
+            <button id="webtransport-send">
+                Send!
+            </button>
+            <button id="webtransport-close">
+                Close!
+            </button>
+        </form>
+        <div id="webtransport-results">
+            WebTransport results:
+            <ul id="webtransport-results-list"></ul>
+        </div>
+
+        <!-- Main frame navigation testing -->
+        <h2>Navigation</h2>
+        <form id="mainframe-form">
+            <label for="mainframe-input-box">URL to navigate to:</label>
+            <input type="url" id="mainframe-input-box" name="mainframe-url" value="http://localhost:8000/test.html" />
+            <button>Navigate!</button>
+        </form>
+
         <!-- Permissions API testing -->
         <h2>Permissions API</h2>
         <form id="permissions-api-form">
             <button id="permissions-api-query">Query permission status</button>
         </form>
-        <div id=""permissions-api-results">
+        <div id="permissions-api-results">
             Permissions API results:
             <ul id="permissions-api-results-list"></ul>
         </div>
@@ -131,6 +157,13 @@
             <li>
                 From the directory with those files, run <code>python3 -m http.server</code> for the HTTP server and run
                 <code>python3 ws.py</code> for the WebSocket server
+            </li>
+            <li>
+               For testing WebTransport, download <a href="https://github.com/GoogleChrome/samples/blob/gh-pages/webtransport/webtransport_server.py">webtransport_server.py</a>
+               and follow the instructions in there to get it running.
+               Self-signed certificate is the easiest thing to do for https
+               (WebTransport does not work with http://localhost, it requires
+               https://localhost).
             </li>
         </ol>
     </main>

@@ -25,6 +25,13 @@ const websocketSendButton = document.getElementById("websocket-send");
 const websocketCloseButton = document.getElementById("websocket-close");
 const websocketResultList = document.getElementById("websocket-results-list");
 
+const webTransportInputBox = document.getElementById("webtransport-input-box");
+const webTransportForm = document.getElementById("webtransport-form");
+const webTransportConnectButton = document.getElementById("webtransport-connect");
+const webTransportSendButton = document.getElementById("webtransport-send");
+const webTransportCloseButton = document.getElementById("webtransport-close");
+const webTransportResultList = document.getElementById("webtransport-results-list");
+
 
 function appendResult(url, result) {
     const text = `${url}: ${result}`;
@@ -166,6 +173,58 @@ websocketSendButton.onclick = (event) => {
 };
 websocketCloseButton.onclick = (event) => {
     webSocket.close();
+};
+
+// WebTransport
+
+let webTransport;
+let webTransportURL;
+
+function appendWebTransportResult(result) {
+    const text = `${webTransportURL}: ${result}`;
+    const item = document.createElement("li");
+    item.appendChild(document.createTextNode(text));
+    webTransportResultList.appendChild(item);
+}
+webTransportForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+});
+webTransportConnectButton.onclick = (event) => {
+   if (!webTransportInputBox.validity.valid) {
+        console.log("Input URL not valid");
+        return;
+    }
+    webTransportURL = webTransportInputBox.value;
+    webTransport = new WebTransport(webTransportURL);
+
+    webTransport.ready
+      .then(() => {
+        appendWebTransportResult('WebTransport ready.');
+      })
+      .catch((error) => {
+        appendWebTransportResult('WebTransport ready error = ${error}');
+      });
+
+    webTransport.closed
+      .then(() => {
+        appendWebTransportResult('WebTransport closed normally.');
+      })
+      .catch((error) => {
+        appendWebTransportResult('WebTransport closed abruptly. error = ${error}');
+      });
+};
+
+webTransportSendButton.onclick = async (event) => {
+    let stream = await webTransport.createBidirectionalStream();
+    let encoder = new TextEncoder();
+    let writer = stream.writable.getWriter();
+    await writer.write(encoder.encode("Hello, world!"))
+    writer.close();
+    appendWebTransportResult('Sent "Hello, world!", got back ' + await new Response(stream.readable).text());
+};
+
+webTransportCloseButton.onclick = (event) => {
+    webTransport.close();
 };
 
 const permissionsApiForm = document.getElementById("permissions-api-form");
