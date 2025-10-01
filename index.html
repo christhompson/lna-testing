@@ -119,12 +119,20 @@
             <ul id="webtransport-results-list"></ul>
         </div>
 
+        <!-- Main frame navigation testing -->
+        <h2>Navigation</h2>
+        <form id="mainframe-form">
+            <label for="mainframe-input-box">URL to navigate to:</label>
+            <input type="url" id="mainframe-input-box" name="mainframe-url" value="http://localhost:8000/test.html" />
+            <button>Navigate!</button>
+        </form>
+
         <!-- Permissions API testing -->
         <h2>Permissions API</h2>
         <form id="permissions-api-form">
             <button id="permissions-api-query">Query permission status</button>
         </form>
-        <div id=""permissions-api-results">
+        <div id="permissions-api-results">
             Permissions API results:
             <ul id="permissions-api-results-list"></ul>
         </div>

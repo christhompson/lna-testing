@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="LNA testbed" />
+
+    <title>Local Network Access frame testing</title>
+
+    <link id="favicon" rel="icon" href="local.png" type="image/x-icon" />
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="script.js" defer></script>
+
+</head>
+
+<body>
+    <header>
+        <h1>Local Network Access testing: iframes and permissions-policy</h1>
+    </header>
+
+    <main>
+        <h2>iframe without allow="local-network-access"</h2>
+        <form id="subframe-form-not-allowlisted">
+            <label for="subframe-input-box-not-allowlisted">URL to load in frame:</label>
+            <input type="url" id="subframe-input-box-not-allowlisted" name="subframe-url" value="http://localhost:8000/test.html" />
+            <button>Navigate!</button>
+        </form>
+        <p>Note: This frame starts with a same-origin page, which will work without being allowlisted for permissions policy.</p>
+        <div id="subframe-results-not-allowlisted">
+            <iframe id="subframe-not-allowlisted" src="https://lna-testing.notyetsecure.com"></iframe>
+        </div>
+        
+        <h2>iframe with allow="local-network-access"</h2>
+        <form id="subframe-form-allowlisted">
+            <label for="subframe-input-box-allowlisted">URL to load in frame:</label>
+            <input type="url" id="subframe-input-box-allowlisted" name="subframe-url" value="http://localhost:8000/test.html" />
+            <button>Navigate!</button>
+        </form>
+        <!-- TODO: Set up a second instance of the testing site for cross-origin framing -->
+        <div id="subframe-results-allowlisted">
+            <iframe allow="local-network-access" id="subframe-allowlisted" src="https://example.com"> </iframe>
+        </div>
+    </main>
+</body>
+
+</html>
