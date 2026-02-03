@@ -228,7 +228,9 @@ webTransportCloseButton.onclick = (event) => {
 };
 
 const permissionsApiForm = document.getElementById("permissions-api-form");
-const permissionsApiQueryButton = document.getElementById("permissions-api-query");
+const permissionsApiQueryButtonLocalNetworkAccess = document.getElementById("permissions-api-query-local-network-access");
+const permissionsApiQueryButtonLoopbackNetwork = document.getElementById("permissions-api-query-loopback-network");
+const permissionsApiQueryButtonLocalNetwork = document.getElementById("permissions-api-query-local-network");
 const permissionsApiResultsList = document.getElementById("permissions-api-results-list");
 
 function appendPermissionsApiResult(result) {
@@ -240,13 +242,31 @@ function appendPermissionsApiResult(result) {
 permissionsApiForm.addEventListener("submit", (event) => {
     event.preventDefault();
 });
-permissionsApiQueryButton.onclick = (event) => {
+permissionsApiQueryButtonLocalNetworkAccess.onclick = (event) => {
     navigator.permissions.query({name: "local-network-access"})
         .then((result) => {
-            appendPermissionsApiResult(result.state);
+            appendPermissionsApiResult(`local-network-access: ${result.state}`);
         })
         .catch((error) => {
-            appendPermissionsApiResult(`error = ${error}`);
+            appendPermissionsApiResult(`local-network-access: error = ${error}`);
+        });
+};
+permissionsApiQueryButtonLoopbackNetwork.onclick = (event) => {
+    navigator.permissions.query({name: "loopback-network"})
+        .then((result) => {
+            appendPermissionsApiResult(`loopback-network: ${result.state}`);
+        })
+        .catch((error) => {
+            appendPermissionsApiResult(`loopback-network: error = ${error}`);
+        });
+};
+permissionsApiQueryButtonLocalNetwork.onclick = (event) => {
+    navigator.permissions.query({name: "local-network"})
+        .then((result) => {
+            appendPermissionsApiResult(`local-network: ${result.state}`);
+        })
+        .catch((error) => {
+            appendPermissionsApiResult(`local-network: error = ${error}`);
         });
 };
 
